@@ -1,4 +1,4 @@
-# PLACEHOLDER
+# projeto_interdisciplinar
 
 This project was generated with [THF CLI](https://github.com/totvs/thf-cli)
 
