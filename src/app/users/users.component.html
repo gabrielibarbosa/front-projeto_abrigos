@@ -1,5 +1,59 @@
-<thf-page-default t-title="Users">
+<thf-page-default t-title="Cadastre-se">
 
-  <p> Users page </p>
+  <div class="thf-grid">
+    <thf-tabs>
+      <thf-tab t-active="true" t-label="Doador">
+        <div class="thf-row">
+          <thf-input class="thf-md-6" t-clean t-icon="thf-icon-user" t-label="Nome Completo">
+          </thf-input>
+          <thf-input class="thf-md-6" [t-mask]="telefoneMask" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
+          </thf-input>
+        </div>
+        <div class="thf-row">
+          <thf-input class="thf-md-6" [t-mask]="cpfMask" t-clean t-icon="thf-icon thf-icon-arrow-right" t-label="CPF">
+          </thf-input>
+          <thf-email class="thf-lg-6" t-label="Email" t-clean>
+          </thf-email>
+        </div>
 
+        <div class="thf-row">
+          <thf-button class="thf-md-3" t-label="Cadastrar" (t-click)="saveForm()">
+          </thf-button>
+        </div>
+      </thf-tab>
+
+      <thf-tab t-label="Abrigos/Entidades">
+        <div class="thf-row">
+          <thf-input class="thf-md-6" t-clean t-icon="thf-icon-user" t-label="Nome do Abrigo">
+          </thf-input>
+          <thf-input class="thf-md-6" [t-mask]="telefoneMask" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
+          </thf-input>
+        </div>
+        <div class="thf-row">
+          <thf-input class="thf-md-6" [t-mask]="cpfMask" t-clean t-icon="thf-icon thf-icon-arrow-right"
+            t-label="CPF/CNPJ">
+          </thf-input>
+          <thf-email class="thf-lg-6" t-label="Email" t-clean>
+          </thf-email>
+        </div>
+        <div class="thf-row">
+          <thf-input class="thf-lg-9" t-clean t-icon="thf-icon-pin" t-label="Endereço">
+          </thf-input>
+          <thf-number class="thf-lg-3" t-label="Número" t-clean>
+          </thf-number>
+
+        </div>
+        <div class="thf-row">
+          <thf-password class="thf-lg-6" name="password" t-label="Totvs Password">
+          </thf-password>
+          <thf-password name="password" class="thf-lg-6" t-label="Totvs Password">
+          </thf-password>
+        </div>
+        <div class="thf-row">
+          <thf-button class="thf-md-3" t-label="Cadastrar Abrigo" (t-click)="saveForm()">
+          </thf-button>
+        </div>
+      </thf-tab>
+    </thf-tabs>
+  </div>
 </thf-page-default>

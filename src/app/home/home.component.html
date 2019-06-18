@@ -1,5 +1,41 @@
-<thf-page-default t-title="Home">
-
-  <p> Home page </p>
+<thf-page-default t-title="Início">
+    <thf-slide
+    t-height="500"
+    [t-slides]="sampleItems">
+    <ng-template t-slide-content-template let-item>
+      <div class="sample-background-image"
+        [style.background-image]="'url(' + item.imagem + ')'"
+        [style.backgroundSize]="'cover'"
+        [style.height.%]="200">
+        <div class="thf-row">
+          <div class="thf-offset-sm-1 thf-offset-md-1 thf-offset-lg-1 thf-offset-xl-1 thf-lg-5 thf-sm-10 thf-mt-4 thf-mb-4 thf-p-5"
+            [style.background]="'white'">
+            <div class="thf-font-text">{{item.date}} </div>
+            <div><h1> {{item.title}}</h1></div>
+            <thf-divider></thf-divider>
+            <div class="thf-font-text-large-bold thf-mb-3">{{item.description}}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </thf-slide>
+  
+  <thf-widget>
+      <thf-divider
+      t-label="Quem somos" >
+  </thf-divider>
+    <h4>No Brasil, segundo a Organização Mundial da Saúde, existam mais de 30 milhões de animais abandonados. Nas grandes cidades, para cada cinco habitantes há um cachorro e destes 10% estão  em situação de abandono. Com isso os abrigos animais tem cada dia mais dificuldades em comportar e sustentar esses animais. 
+        Tendo em vista que o papel dessas instituições são extremamente importantes, o Portal de Doação para Abrigos Animais busca ser uma ponte entre o abrigo com os cidadãos que desejam ajudar.
+         </h4>
+         <thf-divider>
+          
+        </thf-divider>
+        <h4>Nossa equipe é composta por 4 integrantes: 
+            Anderson Cesar Pauletti Castilho,
+            Gabrieli Barbosa,
+            Gustavo Luiz e
+            Johnny Trentin
+             </h4>
+  </thf-widget>
 
 </thf-page-default>
