@@ -18,14 +18,15 @@ export class FeedInitComponent {
       descricao: 'Você não sabe como pode ajudar os animais abandonados? Agora você pode adotar e fazer doações aos abrigos através desta plataforma!',
       contador:"0"
     },
+    {
+      titulo: 'Precisamos de ajuda!',
+      descricao: 'Você não sabe como pode ajudar os animais abandonados? Agora você pode adotar e fazer doações aos abrigos através desta plataforma!',
+      contador:"0"
+    },
 
   ];
 
-  help: string;
-  label: string;
-  technologies: Array<string> = ['Angular', 'Typescript', 'React', 'Babel', 'Jasmine', 'Vue'];
-  value: string;
-
+  
   @ViewChild(ThfModalComponent) thfModal: ThfModalComponent;
   @ViewChild('formPost') formPost: NgForm;
   postLista: import("/home/gabrieli/Documentos/faculdade/front-projeto_abrigos/src/app/users/model/post").Post[];
@@ -52,17 +53,16 @@ export class FeedInitComponent {
   ];
 
   ngOnInit() {
-    this.cardInicial();
   }
   postList() {
     this.userService.getPost().subscribe((res) => {
       this.postLista = res;
     });
   }
-  cardInicial() {
-    this.label = this.post.titulo;
-    this.value = this.post.descricao;
-  }
+
+ sair(){
+  this.router.navigate(['']);
+ }
 
   
   close: ThfModalAction = {
@@ -117,10 +117,9 @@ export class FeedInitComponent {
     this.router.navigate(['feed']);
   }
 
-seguir(){
-  for(let i=0; i=i +1; i++){
-    this.post.contador = i;
-  }
+acompanhar(contador){
+  this.thfNotification.success("Você está acompanhando esta publicação!")
+
 }
 
   closeModal() {
@@ -129,6 +128,9 @@ seguir(){
     this.thfModal.close();
   }
 
+  enviarMensagem(){
+
+  }
   openQuestionnaire() {
     this.thfModal.open();
   }
