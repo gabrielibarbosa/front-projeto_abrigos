@@ -73,9 +73,13 @@
             t-primary-label="Seguir"
             (t-primary-action)="seguir()"
             >
-            <p>{{post.titulo}}</p>
+          <div class="thf-row">
+            <h2  class="color"><span class="thf-icon thf-icon-message "></span>
+              {{post.titulo}}</h2>
+            <thf-divider></thf-divider>
            <p>{{post.descricao}}</p>
-        
+          </div>
+          
           </thf-widget>
         </div>
         

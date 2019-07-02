@@ -12,7 +12,14 @@ import { Post } from 'src/app/users/model/post';
 })
 export class FeedInitComponent {
   post: any = {};
-  posts: Array<Post> = [];
+  posts: Array<Post> = [
+    {
+      titulo: 'Ajude os animais!',
+      descricao: 'Você não sabe como pode ajudar os animais abandonados? Agora você pode adotar e fazer doações aos abrigos através desta plataforma!',
+      contador:"0"
+    },
+
+  ];
 
   help: string;
   label: string;
