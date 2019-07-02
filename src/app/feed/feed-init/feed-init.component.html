@@ -1,0 +1,84 @@
+<thf-page-default t-title="Portal de Doação e Adoção">
+    <div class="thf-grid">
+      <div class="thf-row">
+          <thf-widget  class="thf-lg-12">
+              <div class="thf-md-8">
+                  <h2>Nome  </h2>
+                  <h2>Email</h2>
+       
+              </div>
+              <div class="thf-md-4">
+                  <thf-modal #modal
+                  [t-primary-action]="confirm"
+                  [t-secondary-action]="close"
+                     t-title="Login">
+                    
+                     <form #formPost="ngForm">
+                        <div class="thf-row">
+                            <thf-input
+                            class="thf-md-12"
+                            name="titulo"
+                            [(ngModel)]="post.titulo"
+                            t-label="Título">
+                          </thf-input>
+                        </div>
+                        <div class="thf-row">
+                            <thf-textarea
+                            name="descricao"
+                            [(ngModel)]="post.descricao"
+                            class="thf-md-12"
+                            t-label="Descrição">
+                          </thf-textarea>
+                        </div>
+                        
+                      </form>
+                
+                    </thf-modal>
+                
+                <thf-button
+                class="thf-md-12"
+                  t-label="Criar Post"
+                  (t-click)="modal.open()">
+                
+                </thf-button>
+              </div>
+              <div class="thf-md-12">
+                  <thf-slide
+                  t-height="150"
+                  [t-slides]="sampleItems">
+                  <ng-template t-slide-content-template let-item>
+                    <div class="sample-background-image"
+                      [style.background-image]="'url(' + item.imagem + ')'"
+                      [style.backgroundSize]="'cover'"
+                      [style.height.%]="200">
+                      
+                    </div>
+                  </ng-template>
+                </thf-slide>
+                
+              </div>     
+           
+           
+        
+
+          </thf-widget>
+
+
+      </div> 
+      <div class="thf-row" >
+        <div *ngFor="let post of posts">
+            <thf-widget
+            class="thf-lg-4"
+            t-height="300"
+            t-primary-label="Seguir"
+            (t-primary-action)="seguir()"
+            >
+            <p>{{post.titulo}}</p>
+           <p>{{post.descricao}}</p>
+        
+          </thf-widget>
+        </div>
+        
+        </div>   
+  </div>
+</thf-page-default>

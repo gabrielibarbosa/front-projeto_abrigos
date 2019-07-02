@@ -1,53 +1,45 @@
 <thf-page-default>
    <!--Modal de login  -->
    <div class="thf-row">
-    <thf-modal
-    t-title="Options"
-    [t-primary-action]="confirm"
-    [t-secondary-action]="close">
-  
-    <form #optionsForm="ngForm">
-      <div class="thf-row">
-        <thf-checkbox-group
-          class="thf-md-12"
-          name="checkboxGroup"
-          [(ngModel)]="fruits"
-          t-label="Fruits:"
-          t-required
-          [t-options]="fruitsOptions">
-        </thf-checkbox-group>
-      </div>
-  
-      <div class="thf-row">
-        <thf-combo
-          class="thf-md-12"
-          name="accompaniment"
-          [(ngModel)]="accompaniment"
-          t-label="Accompaniment:"
-          t-required
-          [t-options]="accompanimentOptions">
-        </thf-combo>
-      </div>
-  
-      <div class="thf-row">
-        <thf-textarea
-          class="thf-md-12"
-          name="orderDetail"
-          [(ngModel)]="orderDetail"
-          t-label="Details:"
-          t-rows="8">
-        </thf-textarea>
-      </div>
-    </form>
-  </thf-modal>
+
   <div   class="thf-md-9">
     <h2>Plataforma de Doação e Adoção</h2>
   </div>
-  <thf-button
-    t-label="Entrar"
-    class="thf-md-3"
-    (t-click)="login()">
-  </thf-button>
+
+  <!--Modal -->
+  <thf-modal #modal
+  [t-primary-action]="confirm"
+  [t-secondary-action]="close"
+     t-title="Login">
+    
+     <form #formLogin="ngForm">
+        <div class="thf-row">
+            <thf-input
+            class="thf-md-12"
+            name="email"
+            [(ngModel)]="login.email"
+            t-label="Email">
+          </thf-input>
+        </div>
+        <div class="thf-row">
+            <thf-password
+            name="senha"
+            [(ngModel)]="login.senha"
+            class="thf-md-12"
+            t-label="Senha">
+          </thf-password>
+        </div>
+        
+      </form>
+
+    </thf-modal>
+
+<thf-button
+class="thf-md-3"
+  t-label="Login"
+  (t-click)="modal.open()">
+
+</thf-button>
    </div>
    <br>
 

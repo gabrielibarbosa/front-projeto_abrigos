@@ -1,6 +1,9 @@
 import { Component,  ViewChild } from '@angular/core';
 import { ThfModalComponent, ThfNotificationService, ThfCheckboxGroupOption, ThfComboOption, ThfModalAction } from '@totvs/thf-ui';
 import { NgForm } from '@angular/forms';
+import { logging } from 'protractor';
+import { UserService } from '../users/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +11,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+ login: any = {};
+
+
+ @ViewChild('formLogin') formLogin: NgForm;
+ @ViewChild(ThfModalComponent) thfModal: ThfModalComponent;
+
+ constructor(private thfNotification: ThfNotificationService,    private router: Router,
+   private userService: UserService) { }
 
   sampleItems: Array<any> = [
     {
@@ -24,51 +35,54 @@ export class HomeComponent {
     },
    
   ];
-
+ 
   redirectLink(link: string) {
     window.open(link, '_blank');
   }
 
-  accompaniment: string = '';
-  fruits: Array<string>;
-  orderDetail: string = '';
+
 
   close: ThfModalAction = {
     action: () => {
       this.closeModal();
     },
-    label: 'Close',
+    label: 'Fechar',
     danger: true
   };
 
   confirm: ThfModalAction = {
     action: () => {
-      this.proccessOrder();
-    },
+    //  this.loginPortal();
+    this.redirect();
+  
+  },
     label: 'Confirm'
   };
 
-  public readonly accompanimentOptions: Array<ThfComboOption> = [
-    {value: 'chocolate', label: 'Chocolate'},
-    {value: 'hazeinut', label: 'Hazelnut' },
-    {value: 'milk', label: 'Milk'}
-  ];
+  loginPortal() {
+    if (this.formLogin.invalid) {
 
-  public readonly fruitsOptions: Array<ThfCheckboxGroupOption> = [
-    {value: 'orange', label: 'Orange'},
-    {value: 'apple', label: 'Apple' },
-    {value: 'pineapple', label: 'Pineapple'},
-    {value: 'graple', label: 'Grape' },
-    {value: 'strawberry', label: 'Strawberry'}
-  ];
+      this.thfNotification.warning("Dados inválidos, confira se preencheu o formulário corretamente!")
+    } else {
+      this.userService.loginUsers(this.login).subscribe((res) => {
+        console.log(res);
+      });
+      
+      this.formLogin.reset();
+      this.thfModal.close();
+      this.redirect();
+    }
+  }
 
-  @ViewChild('optionsForm') form: NgForm;
-  @ViewChild(ThfModalComponent) thfModal: ThfModalComponent;
+  redirect(){
+    this.router.navigate(['feed']);
+  }
 
-  constructor(private thfNotification: ThfNotificationService) { }
+
 
   closeModal() {
-    this.form.reset();
+  
+    this.formLogin.reset();
     this.thfModal.close();
   }
 
@@ -78,20 +92,14 @@ export class HomeComponent {
 
   private proccessOrder() {
 
-    if (this.form.invalid) {
+    if (this.formLogin.invalid) {
       const orderInvalidMessage = 'Choose the items to confirm the order.';
       this.thfNotification.warning(orderInvalidMessage);
 
     } else {
       this.confirm.loading = true;
 
-      setTimeout(() => {
-        this.thfNotification.success(`Your order confirmed: ${this.fruits}, with accompaniment: ${this.accompaniment}.`);
-        this.confirm.loading = false;
-        this.closeModal();
-
-      }, 700);
-
+     
     }
 
   }

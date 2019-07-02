@@ -3,56 +3,63 @@
   <div class="thf-grid">
     <thf-tabs>
       <thf-tab t-active="true" t-label="Doador">
-        <div class="thf-row">
-          <thf-input class="thf-md-6" t-clean t-icon="thf-icon-user" t-label="Nome Completo">
-          </thf-input>
-          <thf-input class="thf-md-6" [t-mask]="telefoneMask" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
-          </thf-input>
-        </div>
-        <div class="thf-row">
-          <thf-input class="thf-md-6" [t-mask]="cpfMask" t-clean t-icon="thf-icon thf-icon-arrow-right" t-label="CPF">
-          </thf-input>
-          <thf-email class="thf-lg-6" t-label="Email" t-clean>
-          </thf-email>
-        </div>
+          <form #formDoador="ngForm">
 
         <div class="thf-row">
-          <thf-button class="thf-md-3" t-label="Cadastrar" (t-click)="saveForm()">
+          <thf-input class="thf-md-6"  t-icon="thf-icon-user" name="nome"  [(ngModel)]="doador.nome" t-label="Nome Completo">
+          </thf-input>
+          <thf-input class="thf-md-6" [t-mask]="telefoneMask" name="telefone"  [(ngModel)]="doador.telefone" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
+          </thf-input>
+        </div>
+        <div class="thf-row">
+          <thf-input class="thf-md-6" [t-mask]="cpfMask" name="cpf"  [(ngModel)]="doador.cpf" t-icon="thf-icon thf-icon-arrow-right" t-label="CPF">
+          </thf-input>
+          <thf-email class="thf-lg-6" t-label="Email"  name="email"  [(ngModel)]="doador.email" >
+          </thf-email>
+        </div>
+        <div class="thf-row">
+            <thf-password
+            name="senha"
+            [(ngModel)]="doador.senha"
+            class="thf-md-12"
+            t-label="Senha">
+          </thf-password>
+        </div>
+        <div class="thf-row">
+          <thf-button class="thf-md-3" t-label="Cadastrar" (t-click)="cadastrarDoador(doador)">
           </thf-button>
         </div>
+      </form>
       </thf-tab>
 
       <thf-tab t-label="Abrigos/Entidades">
+        <form #formAbrigo="ngForm">
         <div class="thf-row">
-          <thf-input class="thf-md-6" t-clean t-icon="thf-icon-user" t-label="Nome do Abrigo">
+          <thf-input class="thf-md-6" t-clean t-icon="thf-icon-user" [(ngModel)]="abrigo.nome" name="nome" t-label="Nome do Abrigo">
           </thf-input>
-          <thf-input class="thf-md-6" [t-mask]="telefoneMask" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
+          <thf-input class="thf-md-6" [t-mask]="telefoneMask" [(ngModel)]="abrigo.telefone" name="telefone" t-icon="thf-icon thf-icon-telephone" t-label="Telefone">
           </thf-input>
         </div>
         <div class="thf-row">
-          <thf-input class="thf-md-6" [t-mask]="cpfMask" t-clean t-icon="thf-icon thf-icon-arrow-right"
+          <thf-input class="thf-md-6" [t-mask]="cpfMask" [(ngModel)]="abrigo.cnpj" name="cnpj" t-clean t-icon="thf-icon thf-icon-arrow-right"
             t-label="CPF/CNPJ">
           </thf-input>
-          <thf-email class="thf-lg-6" t-label="Email" t-clean>
+          <thf-email class="thf-lg-6" t-label="Email" [(ngModel)]="abrigo.email" name="email" t-clean>
           </thf-email>
         </div>
         <div class="thf-row">
-          <thf-input class="thf-lg-9" t-clean t-icon="thf-icon-pin" t-label="Endereço">
+          <thf-input class="thf-lg-12" t-clean t-icon="thf-icon-pin" [(ngModel)]="abrigo.endereco" name="endereco" t-label="Endereço">
           </thf-input>
-          <thf-number class="thf-lg-3" t-label="Número" t-clean>
-          </thf-number>
-
         </div>
         <div class="thf-row">
-          <thf-password class="thf-lg-6" name="password" t-label="Totvs Password">
-          </thf-password>
-          <thf-password name="password" class="thf-lg-6" t-label="Totvs Password">
+          <thf-password class="thf-lg-6" [(ngModel)]="abrigo.senha" name="senha" t-label="Senha">
           </thf-password>
         </div>
         <div class="thf-row">
-          <thf-button class="thf-md-3" t-label="Cadastrar Abrigo" (t-click)="saveForm()">
+          <thf-button class="thf-md-3" t-label="Cadastrar Abrigo" (t-click)="cadastrarAbrigo(abrigo)">
           </thf-button>
         </div>
+      </form>
       </thf-tab>
     </thf-tabs>
   </div>
